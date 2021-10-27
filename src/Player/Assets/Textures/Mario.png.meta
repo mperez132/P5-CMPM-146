@@ -1,122 +1,333 @@
 fileFormatVersion: 2
 guid: 383b338d6d8cd4d17b62fb44206c3239
-timeCreated: 1481619544
-licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: MarioWorld_0
-    21300002: MarioWorld_1
-    21300004: MarioWorld_2
-    21300006: MarioWorld_3
-    21300008: MarioWorld_4
-    21300010: MarioWorld_5
-    21300012: MarioWorld_6
-    21300014: MarioWorld_7
-    21300016: MarioWorld_8
-    21300018: MarioWorld_9
-    21300020: MarioWorld_10
-    21300022: MarioWorld_11
-    21300024: MarioWorld_12
-    21300026: MarioWorld_13
-    21300028: MarioWorld_14
-    21300030: MarioWorld_15
-    21300032: MarioWorld_16
-    21300034: MarioWorld_17
-    21300036: MarioWorld_18
-    21300038: SmallMario_0
-    21300040: SmallMario_1
-    21300042: SmallMario_2
-    21300044: SmallMario_3
-    21300046: SmallMario_4
-    21300048: SmallMario_5
-    21300050: SmallMario_6
-    21300052: SmallMario_7
-    21300054: SmallMario_8
-    21300056: SmallMario_9
-    21300058: SmallMario_10
-    21300060: SmallMario_11
-    21300062: SmallMario_12
-    21300064: SmallMario_13
-    21300066: SmallMario_14
-    21300068: SmallMario_15
-    21300070: SmallMario_16
-    21300072: SmallMario_17
-    21300074: SmallMario_18
-    21300076: SmallMario_19
-    21300078: SmallMario_20
-    21300080: SmallMario_21
-    21300082: SmallMario_22
-    21300084: SmallMario_23
-    21300086: SmallMario_24
-    21300088: SmallMario_25
-    21300090: SmallMario_26
-    21300092: SmallMario_27
-    21300094: SmallMario_28
-    21300096: SmallMario_29
-    21300098: SmallMario_30
-    21300100: SmallMario_31
-    21300102: SmallMario_32
-    21300104: SmallMario_33
-    21300106: SmallMario_34
-    21300108: SmallMario_35
-    21300110: SmallMario_36
-    21300112: SmallMario_37
-    21300114: SmallMario_38
-    21300116: SmallMario_39
-    21300118: SmallMario_40
-    21300120: SmallMario_41
-    21300122: SmallMario_42
-    21300124: Mario_0
-    21300126: Mario_1
-    21300128: Mario_2
-    21300130: Mario_3
-    21300132: Mario_4
-    21300134: Mario_5
-    21300136: Mario_6
-    21300138: Mario_7
-    21300140: Mario_8
-    21300142: Mario_9
-    21300144: Mario_10
-    21300146: Mario_11
-    21300148: Mario_12
-    21300150: Mario_13
-    21300152: Mario_14
-    21300154: Mario_15
-    21300156: Mario_16
-    21300158: Mario_17
-    21300160: Mario_18
-    21300162: Mario_19
-    21300164: Mario_20
-    21300166: Mario_21
-    21300168: Mario_22
-    21300170: Mario_23
-    21300172: Mario_24
-    21300174: Mario_25
-    21300176: Mario_26
-    21300178: Mario_27
-    21300180: Mario_28
-    21300182: Mario_29
-    21300184: Mario_30
-    21300186: Mario_31
-    21300188: Mario_32
-    21300190: Mario_33
-    21300192: Mario_34
-    21300194: Mario_35
-    21300196: Mario_36
-    21300198: Mario_37
-    21300200: Mario_38
-    21300202: Mario_39
-    21300204: Mario_40
-    21300206: Mario_41
-    21300208: Mario_42
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: MarioWorld_0
+  - first:
+      213: 21300002
+    second: MarioWorld_1
+  - first:
+      213: 21300004
+    second: MarioWorld_2
+  - first:
+      213: 21300006
+    second: MarioWorld_3
+  - first:
+      213: 21300008
+    second: MarioWorld_4
+  - first:
+      213: 21300010
+    second: MarioWorld_5
+  - first:
+      213: 21300012
+    second: MarioWorld_6
+  - first:
+      213: 21300014
+    second: MarioWorld_7
+  - first:
+      213: 21300016
+    second: MarioWorld_8
+  - first:
+      213: 21300018
+    second: MarioWorld_9
+  - first:
+      213: 21300020
+    second: MarioWorld_10
+  - first:
+      213: 21300022
+    second: MarioWorld_11
+  - first:
+      213: 21300024
+    second: MarioWorld_12
+  - first:
+      213: 21300026
+    second: MarioWorld_13
+  - first:
+      213: 21300028
+    second: MarioWorld_14
+  - first:
+      213: 21300030
+    second: MarioWorld_15
+  - first:
+      213: 21300032
+    second: MarioWorld_16
+  - first:
+      213: 21300034
+    second: MarioWorld_17
+  - first:
+      213: 21300036
+    second: MarioWorld_18
+  - first:
+      213: 21300038
+    second: SmallMario_0
+  - first:
+      213: 21300040
+    second: SmallMario_1
+  - first:
+      213: 21300042
+    second: SmallMario_2
+  - first:
+      213: 21300044
+    second: SmallMario_3
+  - first:
+      213: 21300046
+    second: SmallMario_4
+  - first:
+      213: 21300048
+    second: SmallMario_5
+  - first:
+      213: 21300050
+    second: SmallMario_6
+  - first:
+      213: 21300052
+    second: SmallMario_7
+  - first:
+      213: 21300054
+    second: SmallMario_8
+  - first:
+      213: 21300056
+    second: SmallMario_9
+  - first:
+      213: 21300058
+    second: SmallMario_10
+  - first:
+      213: 21300060
+    second: SmallMario_11
+  - first:
+      213: 21300062
+    second: SmallMario_12
+  - first:
+      213: 21300064
+    second: SmallMario_13
+  - first:
+      213: 21300066
+    second: SmallMario_14
+  - first:
+      213: 21300068
+    second: SmallMario_15
+  - first:
+      213: 21300070
+    second: SmallMario_16
+  - first:
+      213: 21300072
+    second: SmallMario_17
+  - first:
+      213: 21300074
+    second: SmallMario_18
+  - first:
+      213: 21300076
+    second: SmallMario_19
+  - first:
+      213: 21300078
+    second: SmallMario_20
+  - first:
+      213: 21300080
+    second: SmallMario_21
+  - first:
+      213: 21300082
+    second: SmallMario_22
+  - first:
+      213: 21300084
+    second: SmallMario_23
+  - first:
+      213: 21300086
+    second: SmallMario_24
+  - first:
+      213: 21300088
+    second: SmallMario_25
+  - first:
+      213: 21300090
+    second: SmallMario_26
+  - first:
+      213: 21300092
+    second: SmallMario_27
+  - first:
+      213: 21300094
+    second: SmallMario_28
+  - first:
+      213: 21300096
+    second: SmallMario_29
+  - first:
+      213: 21300098
+    second: SmallMario_30
+  - first:
+      213: 21300100
+    second: SmallMario_31
+  - first:
+      213: 21300102
+    second: SmallMario_32
+  - first:
+      213: 21300104
+    second: SmallMario_33
+  - first:
+      213: 21300106
+    second: SmallMario_34
+  - first:
+      213: 21300108
+    second: SmallMario_35
+  - first:
+      213: 21300110
+    second: SmallMario_36
+  - first:
+      213: 21300112
+    second: SmallMario_37
+  - first:
+      213: 21300114
+    second: SmallMario_38
+  - first:
+      213: 21300116
+    second: SmallMario_39
+  - first:
+      213: 21300118
+    second: SmallMario_40
+  - first:
+      213: 21300120
+    second: SmallMario_41
+  - first:
+      213: 21300122
+    second: SmallMario_42
+  - first:
+      213: 21300124
+    second: Mario_0
+  - first:
+      213: 21300126
+    second: Mario_1
+  - first:
+      213: 21300128
+    second: Mario_2
+  - first:
+      213: 21300130
+    second: Mario_3
+  - first:
+      213: 21300132
+    second: Mario_4
+  - first:
+      213: 21300134
+    second: Mario_5
+  - first:
+      213: 21300136
+    second: Mario_6
+  - first:
+      213: 21300138
+    second: Mario_7
+  - first:
+      213: 21300140
+    second: Mario_8
+  - first:
+      213: 21300142
+    second: Mario_9
+  - first:
+      213: 21300144
+    second: Mario_10
+  - first:
+      213: 21300146
+    second: Mario_11
+  - first:
+      213: 21300148
+    second: Mario_12
+  - first:
+      213: 21300150
+    second: Mario_13
+  - first:
+      213: 21300152
+    second: Mario_14
+  - first:
+      213: 21300154
+    second: Mario_15
+  - first:
+      213: 21300156
+    second: Mario_16
+  - first:
+      213: 21300158
+    second: Mario_17
+  - first:
+      213: 21300160
+    second: Mario_18
+  - first:
+      213: 21300162
+    second: Mario_19
+  - first:
+      213: 21300164
+    second: Mario_20
+  - first:
+      213: 21300166
+    second: Mario_21
+  - first:
+      213: 21300168
+    second: Mario_22
+  - first:
+      213: 21300170
+    second: Mario_23
+  - first:
+      213: 21300172
+    second: Mario_24
+  - first:
+      213: 21300174
+    second: Mario_25
+  - first:
+      213: 21300176
+    second: Mario_26
+  - first:
+      213: 21300178
+    second: Mario_27
+  - first:
+      213: 21300180
+    second: Mario_28
+  - first:
+      213: 21300182
+    second: Mario_29
+  - first:
+      213: 21300184
+    second: Mario_30
+  - first:
+      213: 21300186
+    second: Mario_31
+  - first:
+      213: 21300188
+    second: Mario_32
+  - first:
+      213: 21300190
+    second: Mario_33
+  - first:
+      213: 21300192
+    second: Mario_34
+  - first:
+      213: 21300194
+    second: Mario_35
+  - first:
+      213: 21300196
+    second: Mario_36
+  - first:
+      213: 21300198
+    second: Mario_37
+  - first:
+      213: 21300200
+    second: Mario_38
+  - first:
+      213: 21300202
+    second: Mario_39
+  - first:
+      213: 21300204
+    second: Mario_40
+  - first:
+      213: 21300206
+    second: Mario_41
+  - first:
+      213: 21300208
+    second: Mario_42
+  externalObjects: {}
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -125,35 +336,60 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 512
   textureSettings:
+    serializedVersion: 2
     filterMode: 0
     aniso: 16
-    mipBias: -1
-    wrapMode: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -169,7 +405,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c9305410000000000800000000000000
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_1
       rect:
@@ -182,7 +426,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e9305410000000000800000000000000
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_2
       rect:
@@ -195,7 +447,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0a305410000000000800000000000000
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_3
       rect:
@@ -208,7 +468,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2a305410000000000800000000000000
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_4
       rect:
@@ -221,7 +489,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4a305410000000000800000000000000
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_5
       rect:
@@ -234,7 +510,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6a305410000000000800000000000000
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_6
       rect:
@@ -247,7 +531,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8a305410000000000800000000000000
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_7
       rect:
@@ -260,7 +552,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: aa305410000000000800000000000000
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_8
       rect:
@@ -273,7 +573,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ca305410000000000800000000000000
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_9
       rect:
@@ -286,7 +594,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ea305410000000000800000000000000
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_10
       rect:
@@ -299,7 +615,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0b305410000000000800000000000000
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_11
       rect:
@@ -312,7 +636,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2b305410000000000800000000000000
+      internalID: 21300146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_12
       rect:
@@ -325,7 +657,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4b305410000000000800000000000000
+      internalID: 21300148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_13
       rect:
@@ -338,7 +678,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6b305410000000000800000000000000
+      internalID: 21300150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_14
       rect:
@@ -351,7 +699,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8b305410000000000800000000000000
+      internalID: 21300152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_15
       rect:
@@ -364,7 +720,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ab305410000000000800000000000000
+      internalID: 21300154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_16
       rect:
@@ -377,7 +741,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: cb305410000000000800000000000000
+      internalID: 21300156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_17
       rect:
@@ -390,7 +762,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: eb305410000000000800000000000000
+      internalID: 21300158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_18
       rect:
@@ -403,7 +783,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0c305410000000000800000000000000
+      internalID: 21300160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_19
       rect:
@@ -416,7 +804,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2c305410000000000800000000000000
+      internalID: 21300162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_20
       rect:
@@ -429,7 +825,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4c305410000000000800000000000000
+      internalID: 21300164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_21
       rect:
@@ -442,7 +846,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6c305410000000000800000000000000
+      internalID: 21300166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_22
       rect:
@@ -455,7 +867,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8c305410000000000800000000000000
+      internalID: 21300168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_23
       rect:
@@ -468,7 +888,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ac305410000000000800000000000000
+      internalID: 21300170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_24
       rect:
@@ -481,7 +909,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: cc305410000000000800000000000000
+      internalID: 21300172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_25
       rect:
@@ -494,7 +930,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ec305410000000000800000000000000
+      internalID: 21300174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_26
       rect:
@@ -507,7 +951,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0d305410000000000800000000000000
+      internalID: 21300176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_27
       rect:
@@ -520,7 +972,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2d305410000000000800000000000000
+      internalID: 21300178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_28
       rect:
@@ -533,7 +993,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4d305410000000000800000000000000
+      internalID: 21300180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_29
       rect:
@@ -546,7 +1014,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6d305410000000000800000000000000
+      internalID: 21300182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_30
       rect:
@@ -559,7 +1035,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8d305410000000000800000000000000
+      internalID: 21300184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_31
       rect:
@@ -572,7 +1056,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ad305410000000000800000000000000
+      internalID: 21300186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_32
       rect:
@@ -585,7 +1077,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: cd305410000000000800000000000000
+      internalID: 21300188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_33
       rect:
@@ -598,7 +1098,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ed305410000000000800000000000000
+      internalID: 21300190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_34
       rect:
@@ -611,7 +1119,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0e305410000000000800000000000000
+      internalID: 21300192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_35
       rect:
@@ -624,7 +1140,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2e305410000000000800000000000000
+      internalID: 21300194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_36
       rect:
@@ -637,7 +1161,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4e305410000000000800000000000000
+      internalID: 21300196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_37
       rect:
@@ -650,7 +1182,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6e305410000000000800000000000000
+      internalID: 21300198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_38
       rect:
@@ -663,7 +1203,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8e305410000000000800000000000000
+      internalID: 21300200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_39
       rect:
@@ -676,7 +1224,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ae305410000000000800000000000000
+      internalID: 21300202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_40
       rect:
@@ -689,7 +1245,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ce305410000000000800000000000000
+      internalID: 21300204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_41
       rect:
@@ -702,7 +1266,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ee305410000000000800000000000000
+      internalID: 21300206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Mario_42
       rect:
@@ -715,9 +1287,28 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0f305410000000000800000000000000
+      internalID: 21300208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

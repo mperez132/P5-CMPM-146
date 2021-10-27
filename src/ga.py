@@ -28,7 +28,6 @@ options = [
 
 # The level as a grid of tiles
 
-
 class Individual_Grid(object):
     __slots__ = ["genome", "_fitness"]
 
@@ -76,6 +75,7 @@ class Individual_Grid(object):
         return genome
 
     # Create zero or more children from self and other
+    # TODO: 
     def generate_children(self, other):
         new_genome = copy.deepcopy(self.genome)
         # Leaving first and last columns alone...
@@ -85,6 +85,7 @@ class Individual_Grid(object):
         for y in range(height):
             for x in range(left, right):
                 # STUDENT Which one should you take?  Self, or other?  Why?
+
                 # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
                 pass
         # do mutation; note we're returning a one-element tuple here
@@ -259,6 +260,8 @@ class Individual_DE(object):
             heapq.heappush(new_genome, new_de)
         return new_genome
 
+    # TODO: 
+    
     def generate_children(self, other):
         # STUDENT How does this work?  Explain it in your writeup.
         pa = random.randint(0, len(self.genome) - 1)
@@ -342,6 +345,7 @@ class Individual_DE(object):
 
 Individual = Individual_Grid
 
+# TODO: 
 
 def generate_successors(population):
     results = []

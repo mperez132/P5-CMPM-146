@@ -1,5 +1,7 @@
 import copy
 import heapq
+
+from numpy.lib.function_base import select
 import metrics
 import multiprocessing.pool as mpool
 import os
@@ -261,7 +263,6 @@ class Individual_DE(object):
         return new_genome
 
     # TODO: 
-    
     def generate_children(self, other):
         # STUDENT How does this work?  Explain it in your writeup.
         pa = random.randint(0, len(self.genome) - 1)
@@ -346,12 +347,41 @@ class Individual_DE(object):
 Individual = Individual_Grid
 
 # TODO: 
-
 def generate_successors(population):
     results = []
     # STUDENT Design and implement this
     # Hint: Call generate_children() on some individuals and fill up results.
+    tournament_selected = tournament_selection(population)
+    random_selected = random_selection(population)
+    
+    # Are these our two parents for us to "generate_children"? 
+
+    
+
     return results
+
+def tournament_selection(population):
+    selected = []
+    best_one = None
+    shuffled = []
+    if len(population) < 2:
+        return population
+    
+    while len(selected) != len(population):
+            while len(shuffled) != math.floor(len(population)/2):
+                shuffled.append(population[random.randrange(0, len(population) + 1)])
+            for i in shuffled:
+                individual_1 = i
+                if best_one is None or individual_1.fitness() > best_one.fitness():
+                    best_one = individual_1
+            selected.append(best_one)
+    return selected
+
+def random_selection(population):
+    selected = []
+    for i in population:
+        selected[i] = population[random.randrange(0, len(population) + 1)]
+    return selected
 
 
 def ga():

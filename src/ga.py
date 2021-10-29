@@ -353,11 +353,13 @@ def generate_successors(population):
     # Hint: Call generate_children() on some individuals and fill up results.
     tournament_selected = tournament_selection(population)
     random_selected = random_selection(population)
-    
     # Are these our two parents for us to "generate_children"? 
-
-    
-
+    # Writing what Alex confirmed from office hours
+    for index in range(0, len(tournament_selected)):
+        parent1 = tournament_selected[index]
+        parent2 = random_selected[index]
+        results.append(parent1.generate_children(parent2))
+        results.append(parent2.generate_children(parent1))
     return results
 
 def tournament_selection(population):
@@ -366,7 +368,6 @@ def tournament_selection(population):
     shuffled = []
     if len(population) < 2:
         return population
-    
     while len(selected) != len(population):
             while len(shuffled) != math.floor(len(population)/2):
                 shuffled.append(population[random.randrange(0, len(population) + 1)])

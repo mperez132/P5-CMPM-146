@@ -355,11 +355,15 @@ def generate_successors(population):
     random_selected = random_selection(population)
     # Are these our two parents for us to "generate_children"? 
     # Writing what Alex confirmed from office hours
-    for index in range(0, len(tournament_selected)):
-        parent1 = tournament_selected[index]
-        parent2 = random_selected[index]
-        results.append(parent1.generate_children(parent2))
-        results.append(parent2.generate_children(parent1))
+    # for index in range(0, len(tournament_selected)):
+    #     parent1 = tournament_selected[index]
+    #     parent2 = random_selected[index]
+    #     results.append(parent1.generate_children(parent2))
+    #     results.append(parent2.generate_children(parent1))
+    for selected in tournament_selected:
+        if(selected == tournament_selected[0]):
+            continue
+        results.append( selected.generate_children(tournament_selected[0]))
     return results
 
 def tournament_selection(population):

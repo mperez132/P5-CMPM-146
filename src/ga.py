@@ -79,23 +79,22 @@ class Individual_Grid(object):
 
         for x in range(left, right):
             pipeCheck = False
-            for y in range(height, 0):
-
-                if(pipeCheck):
-                    genome[y][x] = "|"
-                    continue
-
+            for y in range(height, 0, -1):
                 if(y == 0):
                     if random.random() < 0.25:
                         genome[y][x] = "-"
 
-                elif(y > 3 and y < 8):
-                    if random.random() < 0.25:
-                        genome[y][x] = options[random.randrange(0, 8)]
+                elif(pipeCheck):
+                    genome[y][x] = "|"
+                    continue
 
-                elif(y < 3):
+                elif(y > 4 and y < 8):
                     if random.random() < 0.25:
-                        item = nopipe[random.randrange(0, 8)]
+                        genome[y][x] = nopipe[random.randrange(0, 8)]
+
+                elif(y < 4):
+                    if random.random() < 0.25:
+                        item = options[random.randrange(0, 8)]
                         while item != "|":
                             item = nopipe[random.randrange(0, 8)]
 
@@ -130,6 +129,7 @@ class Individual_Grid(object):
                 # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
                 #pass
         # do mutation; note we're returning a one-element tuple here
+        new_genome = self.mutate(new_genome)
 
         return (Individual_Grid(new_genome),)
 
@@ -391,7 +391,7 @@ def generate_successors(population):
     results = []
     # STUDENT Design and implement this
     # Hint: Call generate_children() on some individuals and fill up results.
-    print("NUM", max(population, key=Individual.fitness))
+    #print("NUM", max(population, key=Individual.fitness))
     tournament_selected = tournament_selection(population)
     
     # random_selected = random_selection(population)
@@ -399,7 +399,7 @@ def generate_successors(population):
     for selected in tournament_selected:
         if(selected == tournament_selected[0]):
             continue
-        results.append( selected.generate_children(tournament_selected[0]))
+        results.append(selected.generate_children(tournament_selected[0]))
     
     # Are these our two parents for us to "generate_children"? 
     return results

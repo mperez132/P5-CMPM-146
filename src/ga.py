@@ -71,26 +71,66 @@ class Individual_Grid(object):
 
         left = 1
         right = width - 1
-        for y in range(height):
-            for x in range(left, right):
-                pass
+        nopipe = []
+        
+        for items in options:
+            if(items != "T" or items != "|"):
+                nopipe.append(items)
+
+        for x in range(left, right):
+            pipeCheck = False
+            for y in range(height, 0):
+
+                if(pipeCheck):
+                    genome[y][x] = "|"
+                    continue
+
+                if(y == 0):
+                    if random.random() < 0.25:
+                        genome[y][x] = "-"
+
+                elif(y > 3 and y < 8):
+                    if random.random() < 0.25:
+                        genome[y][x] = options[random.randrange(0, 8)]
+
+                elif(y < 3):
+                    if random.random() < 0.25:
+                        item = nopipe[random.randrange(0, 8)]
+                        while item != "|":
+                            item = nopipe[random.randrange(0, 8)]
+
+                        genome[y][x] = item
+                        if item == "T":
+                            pipeCheck = True
+
         return genome
 
     # Create zero or more children from self and other
     # TODO: 
     def generate_children(self, other):
         new_genome = copy.deepcopy(self.genome)
+        
+        # Top paragraph Page 3 of writeup.pdf
+
         # Leaving first and last columns alone...
         # do crossover with other
         left = 1
         right = width - 1
         for y in range(height):
             for x in range(left, right):
+                if self._fitness > other._fitness:
+                    if random.random() < 0.25:
+                        new_genome[y][x] = other.genome[y][x]
+                else:
+                    if random.random() < 0.75:
+                        new_genome[y][x] = other.genome[y][x]
+
                 # STUDENT Which one should you take?  Self, or other?  Why?
 
                 # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
-                pass
+                #pass
         # do mutation; note we're returning a one-element tuple here
+
         return (Individual_Grid(new_genome),)
 
     # Turn the genome into a level string (easy for this genome)
@@ -351,33 +391,34 @@ def generate_successors(population):
     results = []
     # STUDENT Design and implement this
     # Hint: Call generate_children() on some individuals and fill up results.
+    print("NUM", max(population, key=Individual.fitness))
     tournament_selected = tournament_selection(population)
-    random_selected = random_selection(population)
-    # Are these our two parents for us to "generate_children"? 
-    # Writing what Alex confirmed from office hours
-    # for index in range(0, len(tournament_selected)):
-    #     parent1 = tournament_selected[index]
-    #     parent2 = random_selected[index]
-    #     results.append(parent1.generate_children(parent2))
-    #     results.append(parent2.generate_children(parent1))
+    
+    # random_selected = random_selection(population)
+    # Go through all of the selected and make them mate with the first person 
     for selected in tournament_selected:
         if(selected == tournament_selected[0]):
             continue
         results.append( selected.generate_children(tournament_selected[0]))
+    
+    # Are these our two parents for us to "generate_children"? 
     return results
 
 def tournament_selection(population):
+    #print("Population:", population)
     selected = []
     best_one = None
     shuffled = []
     if len(population) < 2:
         return population
+    
     while len(selected) != len(population):
             while len(shuffled) != math.floor(len(population)/2):
-                shuffled.append(population[random.randrange(0, len(population) + 1)])
+                shuffled.append(population[random.randrange(0, len(population))])
             for i in shuffled:
                 individual_1 = i
-                if best_one is None or individual_1.fitness() > best_one.fitness():
+                if best_one is None or individual_1._fitness > best_one._fitness:
+                    #print("BEST F: ", best_one.fitness())
                     best_one = individual_1
             selected.append(best_one)
     return selected

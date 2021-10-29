@@ -79,20 +79,20 @@ class Individual_Grid(object):
 
         for x in range(left, right):
             pipeCheck = False
-            for y in range(height, 0, -1):
-                if(y == 0):
+            for y in range(height):
+                if(y == 13):
                     if random.random() < 0.25:
                         genome[y][x] = "-"
 
-                elif(pipeCheck):
-                    genome[y][x] = "|"
-                    continue
+                # elif(pipeCheck):
+                #     genome[y][x] = "|"
+                #     continue
 
-                elif(y > 4 and y < 8):
+                elif(y > 3 and y < 9):
                     if random.random() < 0.25:
                         genome[y][x] = nopipe[random.randrange(0, 8)]
 
-                elif(y < 4):
+                elif(y < 9):
                     if random.random() < 0.25:
                         item = options[random.randrange(0, 8)]
                         while item != "|":
@@ -107,7 +107,7 @@ class Individual_Grid(object):
     # Create zero or more children from self and other
     # TODO: 
     def generate_children(self, other):
-        new_genome = copy.deepcopy(self.genome)
+        new_genome = copy.deepcopy(other.genome)
         
         # Top paragraph Page 3 of writeup.pdf
 
@@ -118,20 +118,19 @@ class Individual_Grid(object):
         for y in range(height):
             for x in range(left, right):
                 if self._fitness > other._fitness:
-                    if random.random() < 0.25:
+                    if random.random() > 0.25:
                         new_genome[y][x] = other.genome[y][x]
                 else:
-                    if random.random() < 0.75:
+                    if random.random() > 0.75:
                         new_genome[y][x] = other.genome[y][x]
-
                 # STUDENT Which one should you take?  Self, or other?  Why?
 
                 # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
                 #pass
         # do mutation; note we're returning a one-element tuple here
-        new_genome = self.mutate(new_genome)
+        #new_genome = self.mutate(new_genome)
 
-        return (Individual_Grid(new_genome),)
+        return (Individual_Grid(new_genome))
 
     # Turn the genome into a level string (easy for this genome)
     def to_level(self):
@@ -392,41 +391,53 @@ def generate_successors(population):
     # STUDENT Design and implement this
     # Hint: Call generate_children() on some individuals and fill up results.
     #print("NUM", max(population, key=Individual.fitness))
-    tournament_selected = tournament_selection(population)
+    #tournament_selected = tournament_selection(population)
     
-    # random_selected = random_selection(population)
+    random_selected = random_selection(population)
     # Go through all of the selected and make them mate with the first person 
-    for selected in tournament_selected:
-        if(selected == tournament_selected[0]):
+    for selected in random_selected:
+        if(selected == random_selected[0]):
             continue
-        results.append(selected.generate_children(tournament_selected[0]))
+        results.append(selected.generate_children(random_selected[0]))
     
     # Are these our two parents for us to "generate_children"? 
     return results
 
+#def tournament_selection(population):
+    # #print("Population:", population)
+    # selected = []
+    # best_one = None
+    # shuffled = []
+    # if len(population) < 2:
+    #     return population
+    
+    # while len(selected) != len(population):
+    #         while len(shuffled) != math.floor(len(population)/2):
+    #             shuffled.append(population[random.randrange(0, len(population))])
+    #         for i in shuffled:
+    #             individual_1 = i
+    #             if best_one is None or individual_1._fitness > best_one._fitness:
+    #                 #print("BEST F: ", best_one.fitness())
+    #                 best_one = individual_1
+    #         selected.append(best_one)
+    # return selected
 def tournament_selection(population):
     #print("Population:", population)
     selected = []
     best_one = None
-    shuffled = []
-    if len(population) < 2:
-        return population
-    
-    while len(selected) != len(population):
-            while len(shuffled) != math.floor(len(population)/2):
-                shuffled.append(population[random.randrange(0, len(population))])
-            for i in shuffled:
-                individual_1 = i
-                if best_one is None or individual_1._fitness > best_one._fitness:
-                    #print("BEST F: ", best_one.fitness())
-                    best_one = individual_1
-            selected.append(best_one)
+    population_copy = population.copy()
+    random.shuffle(population_copy)
+    for index in range(0, math.floor(len(population_copy)/2)):
+        individual_1 = population_copy[index]
+        if best_one is None or individual_1._fitness > best_one._fitness:
+            best_one = individual_1
+        selected.append(best_one)
     return selected
 
 def random_selection(population):
     selected = []
     for i in population:
-        selected[i] = population[random.randrange(0, len(population) + 1)]
+        selected.append(population[random.randrange(0, len(population))])
     return selected
 
 
@@ -470,6 +481,10 @@ def ga():
                 generation += 1
                 # STUDENT Determine stopping condition
                 stop_condition = False
+
+                if generation > 10:
+                    stop_condition = True
+
                 if stop_condition:
                     break
                 # STUDENT Also consider using FI-2POP as in the Sorenson & Pasquier paper

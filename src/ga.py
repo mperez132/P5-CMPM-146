@@ -84,9 +84,9 @@ class Individual_Grid(object):
                     if random.random() < 0.25:
                         genome[y][x] = "-"
 
-                # elif(pipeCheck):
-                #     genome[y][x] = "|"
-                #     continue
+                elif(pipeCheck):
+                    genome[y][x] = "|"
+                    continue
 
                 elif(y > 3 and y < 9):
                     if random.random() < 0.25:
@@ -107,7 +107,7 @@ class Individual_Grid(object):
     # Create zero or more children from self and other
     # TODO: 
     def generate_children(self, other):
-        new_genome = copy.deepcopy(other.genome)
+        new_genome = copy.deepcopy(self.genome)
         
         # Top paragraph Page 3 of writeup.pdf
 
@@ -115,14 +115,14 @@ class Individual_Grid(object):
         # do crossover with other
         left = 1
         right = width - 1
-        for y in range(height):
-            for x in range(left, right):
-                if self._fitness > other._fitness:
-                    if random.random() > 0.25:
-                        new_genome[y][x] = other.genome[y][x]
-                else:
-                    if random.random() > 0.75:
-                        new_genome[y][x] = other.genome[y][x]
+        # for y in range(height):
+        #     for x in range(left, right):
+        #         if self._fitness > other._fitness:
+        #             if random.random() > 0.25:
+        #                 new_genome[y][x] = other.genome[y][x]
+        #         else:
+        #             if random.random() > 0.75:
+        #                 new_genome[y][x] = other.genome[y][x]
                 # STUDENT Which one should you take?  Self, or other?  Why?
 
                 # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
@@ -154,12 +154,58 @@ class Individual_Grid(object):
     def random_individual(cls):
         # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
         # STUDENT also consider weighting the different tile types so it's not uniformly random
-        g = [random.choices(options, k=width) for row in range(height)]
+        g = [["-" for col in range(width)] for row in range(height)]
+
+        left = 1
+        right = width - 1
+        nopipe = []
+        
+        # Make list without any pipe parts
+        for items in options:
+            if(items != "T" and items != "|"):
+                nopipe.append(items)
+
+        for x in range(left, right):
+            pipeCheck = False
+            for y in range(height):
+                
+                # Puts the body of the pipe if one of the blocks is "T"
+                if(pipeCheck):
+                    g[y][x] = "|"
+                    continue
+                
+                # On the Floor level generate some enemies 
+                elif(y == 14):
+                    if random.random() < 0.03:
+                        g[y][x] = "E"
+
+                # From levels 4 - 9 generate blocks that are not pipes
+                elif(y > 3 and y < 10):
+                    if random.random() < 0.05:
+                        g[y][x] = nopipe[random.randrange(0, 6)]
+                        
+                # Make Pipes from levels 11 - 13
+                # On level 11, add the possibility of other blocks as well
+                elif(y > 10 and y < 14):
+                    #print(nopipeBody)
+                    if(y == 11 and random.random() < 0.05):
+                        g[y][x] = nopipe[random.randrange(0, 6)]
+                    if random.random() < 0.01:
+                        g[y][x] = "T"
+                    
+                    if g[y][x] == "T":
+                        pipeCheck = True
+            
         g[15][:] = ["X"] * width
         g[14][0] = "m"
         g[7][-1] = "v"
         g[8:14][-1] = ["f"] * 6
         g[14:16][-1] = ["X", "X"]
+        for col in range(8, 14):
+            g[col][-1] = "f"
+        for col in range(14, 16):
+            g[col][-1] = "X"
+        
         return cls(g)
 
 
@@ -390,49 +436,41 @@ def generate_successors(population):
     results = []
     # STUDENT Design and implement this
     # Hint: Call generate_children() on some individuals and fill up results.
-    #print("NUM", max(population, key=Individual.fitness))
-    #tournament_selected = tournament_selection(population)
-    
+
+    # tournament_selected = tournament_selection(population)
+    # for selected in tournament_selected:
+    #     if(selected == tournament_selected[0]):
+    #         continue
+    #     results.append(selected.generate_children(tournament_selected[0]))
+
     random_selected = random_selection(population)
-    # Go through all of the selected and make them mate with the first person 
     for selected in random_selected:
         if(selected == random_selected[0]):
             continue
         results.append(selected.generate_children(random_selected[0]))
+
+    
     
     # Are these our two parents for us to "generate_children"? 
     return results
 
-#def tournament_selection(population):
-    # #print("Population:", population)
-    # selected = []
-    # best_one = None
-    # shuffled = []
-    # if len(population) < 2:
-    #     return population
-    
-    # while len(selected) != len(population):
-    #         while len(shuffled) != math.floor(len(population)/2):
-    #             shuffled.append(population[random.randrange(0, len(population))])
-    #         for i in shuffled:
-    #             individual_1 = i
-    #             if best_one is None or individual_1._fitness > best_one._fitness:
-    #                 #print("BEST F: ", best_one.fitness())
-    #                 best_one = individual_1
-    #         selected.append(best_one)
-    # return selected
 def tournament_selection(population):
-    #print("Population:", population)
     selected = []
+    shuffled = []
+    select_amount = math.floor(len(population)/2)
     best_one = None
-    population_copy = population.copy()
-    random.shuffle(population_copy)
-    for index in range(0, math.floor(len(population_copy)/2)):
-        individual_1 = population_copy[index]
-        if best_one is None or individual_1._fitness > best_one._fitness:
-            best_one = individual_1
-        selected.append(best_one)
+    
+    
+    while len(selected) != len(population):
+            while len(shuffled) != select_amount:
+                shuffled.append(population[random.randrange(0, len(population) + 1)])
+            for i in shuffled:
+                individual_1 = i
+                if best_one is None or individual_1._fitness > best_one._fitness:
+                    best_one = individual_1
+            selected.append(best_one)
     return selected
+
 
 def random_selection(population):
     selected = []
@@ -482,7 +520,7 @@ def ga():
                 # STUDENT Determine stopping condition
                 stop_condition = False
 
-                if generation > 10:
+                if generation > 2:
                     stop_condition = True
 
                 if stop_condition:

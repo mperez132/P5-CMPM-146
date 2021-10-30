@@ -71,36 +71,42 @@ class Individual_Grid(object):
 
         left = 1
         right = width - 1
-        nopipe = []
-        
-        for items in options:
-            if(items != "T" or items != "|"):
-                nopipe.append(items)
 
-        for x in range(left, right):
-            pipeCheck = False
-            for y in range(height):
-                if(y == 13):
+        for y in range(height):
+            for x in range(left, right):
+                if(y == 14):
+                    if random.random() < 0.02:
+                        if(genome[y][x] == "-"):
+                            genome[y][x] = "E"
+                
+                if(genome[y][x] == "?"):
                     if random.random() < 0.25:
-                        genome[y][x] = "-"
+                        roll = random.randrange(1,3)
+                        if(roll == 1):
+                            genome[y][x] = "B"
+                        else:
+                            genome[y][x] = "M"
 
-                elif(pipeCheck):
-                    genome[y][x] = "|"
-                    continue
-
-                elif(y > 3 and y < 9):
+                if(genome[y][x] == "B"):
                     if random.random() < 0.25:
-                        genome[y][x] = nopipe[random.randrange(0, 8)]
+                        roll = random.randrange(1,3)
+                        if(roll == 1):
+                            genome[y][x] = "?"
+                        else:
+                            genome[y][x] = "M"
 
-                elif(y < 9):
+                if(genome[y][x] == "M"):
                     if random.random() < 0.25:
-                        item = options[random.randrange(0, 8)]
-                        while item != "|":
-                            item = nopipe[random.randrange(0, 8)]
-
-                        genome[y][x] = item
-                        if item == "T":
-                            pipeCheck = True
+                        roll = random.randrange(1,3)
+                        if(roll == 1):
+                            genome[y][x] = "?"
+                        else:
+                            genome[y][x] = "B"
+                
+                if(y > 9 and y < 14):
+                    if random.random() < 0.009:
+                        if(genome[y][x] == "-"):
+                            genome[y][x] = "o"
 
         return genome
 
@@ -112,12 +118,11 @@ class Individual_Grid(object):
         for i in range(0 , (width - 1)):
             if(other.genome[13][i] != '-'):
                 isEmpty = False
-                print("NOT EMPTY")
                 break
 
         if(isEmpty):
             new_genome = copy.deepcopy(self.genome)
-            #new_genome = self.mutate(new_genome)
+            new_genome = self.mutate(new_genome)
             return (Individual_Grid(new_genome))
 
         new_genome = copy.deepcopy(other.genome)
@@ -144,7 +149,7 @@ class Individual_Grid(object):
                 # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
                 #pass
         # do mutation; note we're returning a one-element tuple here
-        #new_genome = self.mutate(new_genome)
+        new_genome = other.mutate(new_genome)
 
         return (Individual_Grid(new_genome))
 
@@ -575,9 +580,6 @@ def generate_successors(population):
     #     if(selected == random_selected[0]):
     #         continue
     #     results.append(selected.generate_children(random_selected[0]))
-
-    
-    
     # Are these our two parents for us to "generate_children"? 
     return results
 
@@ -596,6 +598,7 @@ def tournament_selection(population):
         else:
             selected.append(individual_1)
     return selected
+
 
 def random_selection(population):
     selected = []

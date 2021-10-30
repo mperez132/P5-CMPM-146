@@ -156,9 +156,11 @@ class Individual_Grid(object):
         # STUDENT also consider weighting the different tile types so it's not uniformly random
         g = [["-" for col in range(width)] for row in range(height)]
 
-        left = 1
+        left = 5
         right = width - 1
         nopipe = []
+        BlockCheck = False
+        xSave = 3
         
         # Make list without any pipe parts
         for items in options:
@@ -168,7 +170,6 @@ class Individual_Grid(object):
         for x in range(left, right):
             pipeCheck = False
             for y in range(height):
-                
                 # Puts the body of the pipe if one of the blocks is "T"
                 if(pipeCheck):
                     g[y][x] = "|"
@@ -179,22 +180,47 @@ class Individual_Grid(object):
                     if random.random() < 0.03:
                         g[y][x] = "E"
 
-                # From levels 4 - 9 generate blocks that are not pipes
-                elif(y > 3 and y < 10):
-                    if random.random() < 0.05:
-                        g[y][x] = nopipe[random.randrange(0, 6)]
-                        
-                # Make Pipes from levels 11 - 13
-                # On level 11, add the possibility of other blocks as well
                 elif(y > 10 and y < 14):
-                    #print(nopipeBody)
-                    if(y == 11 and random.random() < 0.05):
-                        g[y][x] = nopipe[random.randrange(0, 6)]
-                    if random.random() < 0.01:
-                        g[y][x] = "T"
+
+
+                    if random.random() < 0.03:
+                        if((x - xSave) >= 3):
+                            if(g[y][x-1] == '-' and g[y][x+1] == '-'):
+                                g[y][x] = "T"
+                                xSave = x
                     
                     if g[y][x] == "T":
                         pipeCheck = True
+        
+        for y in range(height, 1, -1):
+            for x in range(left, right):
+                if(y > 5 and y < 12):
+                    if(g[y+1][x] == "-" and g[y-1][x] == "-" and g[y+2][x] == "-"and g[y][x+1] != 'T' and g[y][x-1] != 'T'):
+                        if(g[y+1][x+1] == "-"):
+                            if random.random() < 0.05:
+                                g[y][x] = nopipe[random.randrange(0, 6)]
+                if(y == 14):
+                    if random.random() < 0.03:
+                        if(x < (width - 12)):
+                            checkEmpty = True
+                            for i in range(0, 5):
+                                if( g[y][x+i] != "-"):
+                                    checkEmpty = False
+                                    break
+                            if(checkEmpty):
+                                g[y][x] = "X"
+
+                                g[y][x+1] = "X"
+                                g[y-1][x+1] = "X"
+
+                                g[y][x+2] = "X"
+                                g[y-1][x+2] = "X"
+                                g[y-2][x+2] = "X"
+                                
+                                g[y][x+3] = "X"
+                                g[y-1][x+3] = "X"
+                                g[y-2][x+3] = "X"
+                                g[y-3][x+3] = "X"
             
         g[15][:] = ["X"] * width
         g[14][0] = "m"
@@ -436,41 +462,35 @@ def generate_successors(population):
     results = []
     # STUDENT Design and implement this
     # Hint: Call generate_children() on some individuals and fill up results.
-
-    # tournament_selected = tournament_selection(population)
-    # for selected in tournament_selected:
-    #     if(selected == tournament_selected[0]):
-    #         continue
-    #     results.append(selected.generate_children(tournament_selected[0]))
-
-    random_selected = random_selection(population)
-    for selected in random_selected:
-        if(selected == random_selected[0]):
+    tournament_selected = tournament_selection(population)
+    for selected in tournament_selected:
+        if(selected == tournament_selected[0]):
             continue
-        results.append(selected.generate_children(random_selected[0]))
+        results.append(selected.generate_children(tournament_selected[0]))
 
-    
-    
+    # random_selected = random_selection(population)
+    # for selected in random_selected:
+    #     if(selected == random_selected[0]):
+    #         continue
+    #     results.append(selected.generate_children(random_selected[0]))
     # Are these our two parents for us to "generate_children"? 
     return results
 
 def tournament_selection(population):
     selected = []
-    shuffled = []
-    select_amount = math.floor(len(population)/2)
     best_one = None
-    
-    
-    while len(selected) != len(population):
-            while len(shuffled) != select_amount:
-                shuffled.append(population[random.randrange(0, len(population) + 1)])
-            for i in shuffled:
-                individual_1 = i
-                if best_one is None or individual_1._fitness > best_one._fitness:
-                    best_one = individual_1
+    population_copy = copy.deepcopy(population)
+    random.shuffle(population_copy)
+    if len(population_copy) < 2:
+        return population_copy
+    for i in range(0, len(population_copy)):
+        individual_1 = population_copy[i]
+        if best_one is None or individual_1.fitness() > best_one.fitness():
+            best_one = individual_1
             selected.append(best_one)
+        else:
+            selected.append(individual_1)
     return selected
-
 
 def random_selection(population):
     selected = []
@@ -520,7 +540,7 @@ def ga():
                 # STUDENT Determine stopping condition
                 stop_condition = False
 
-                if generation > 2:
+                if generation > 10:
                     stop_condition = True
 
                 if stop_condition:

@@ -107,7 +107,20 @@ class Individual_Grid(object):
     # Create zero or more children from self and other
     # TODO: 
     def generate_children(self, other):
-        new_genome = copy.deepcopy(self.genome)
+        
+        isEmpty = True
+        for i in range(0 , (width - 1)):
+            if(other.genome[13][i] != '-'):
+                isEmpty = False
+                print("NOT EMPTY")
+                break
+
+        if(isEmpty):
+            new_genome = copy.deepcopy(self.genome)
+            #new_genome = self.mutate(new_genome)
+            return (Individual_Grid(new_genome))
+
+        new_genome = copy.deepcopy(other.genome)
         
         # Top paragraph Page 3 of writeup.pdf
 
@@ -115,14 +128,17 @@ class Individual_Grid(object):
         # do crossover with other
         left = 1
         right = width - 1
-        # for y in range(height):
-        #     for x in range(left, right):
-        #         if self._fitness > other._fitness:
-        #             if random.random() > 0.25:
-        #                 new_genome[y][x] = other.genome[y][x]
-        #         else:
-        #             if random.random() > 0.75:
-        #                 new_genome[y][x] = other.genome[y][x]
+        for y in range(height):
+            for x in range(left, right):
+                if(other.genome[y][x] == "T" or other.genome[y][x] == "X" or other.genome[y][x] == "|"):
+                    new_genome[y][x] = other.genome[y][x]
+                    continue
+                if self._fitness > other._fitness:
+                    if random.random() > 0.90:
+                        if(other.genome[y][x] != "T" or other.genome[y][x] != "X" or other.genome[y][x] != "|"):
+                            if(self.genome[y][x] != "T" and self.genome[y][x] != "|"):
+                                new_genome[y][x] = self.genome[y][x]
+                        continue
                 # STUDENT Which one should you take?  Self, or other?  Why?
 
                 # STUDENT consider putting more constraints on this to prevent pipes in the air, etc
@@ -161,6 +177,7 @@ class Individual_Grid(object):
         nopipe = []
         BlockCheck = False
         xSave = 3
+        count = 0
         
         # Make list without any pipe parts
         for items in options:
@@ -194,33 +211,117 @@ class Individual_Grid(object):
         
         for y in range(height, 1, -1):
             for x in range(left, right):
-                if(y > 5 and y < 12):
-                    if(g[y+1][x] == "-" and g[y-1][x] == "-" and g[y+2][x] == "-"and g[y][x+1] != 'T' and g[y][x-1] != 'T'):
+                
+                if(y > 7 and y < 13):
+                    if(BlockCheck):
+                        block = random.randrange(1, 11)
+                        if(g[y][x] == 'T'):
+                            count = 0
+                            BlockCheck = False
+                            continue
+                        
+                        c = False
+                        for i in range(0, 14 - y):
+                            if(g[y+i][x] == 'X'):
+                                count = 0
+                                BlockCheck = False
+                                c = False
+                                continue
+
+                        for i in range(0, (width - 1) - x):
+                            for j in range(0, count):
+                                if((x+count) < (width - 1)):
+                                    if(g[y][x+j] != "-"):
+                                        count = 0
+                                        BlockCheck = False
+                                        c = False
+                                        continue
+
+
+                            # if(g[y+i][x] == 'X'):
+                                
+                            
+                        if(c):
+                            continue
+
+                        if(block < 6):
+                            g[y][x] = "B"
+
+                        if(block > 5 and block < 10):
+                            g[y][x] = "?"
+
+                        if(random.random() < 0.02):
+                            g[y][x] = "M"
+                        
+                        if(g[y+1][x] == "T"):
+                            g[y][x] = "-"
+                            g[y][x-1] = "-"
+
+                        if(count > 0):
+                            count -= 1
+                            continue
+
+                        else:
+                            BlockCheck = False
+
+                    if(g[y+1][x] == "-" and g[y-1][x] == "-" and g[y+2][x] == "-"and g[y][x+1] != 'T' and g[y][x-1] != 'T' and g[y][x+1] == '-' and g[y][x-1] == '-'):
                         if(g[y+1][x+1] == "-"):
+
                             if random.random() < 0.05:
                                 g[y][x] = nopipe[random.randrange(0, 6)]
+                                if(g[y][x] == "B" or g[y][x] == "?" or g[y][x] == "M"):
+                                    count = random.randrange(0, 6)
+                                    BlockCheck = True
                 if(y == 14):
                     if random.random() < 0.03:
-                        if(x < (width - 12)):
+
+                        choose = random.randrange(0,2)
+
+
+                        if(choose == 0):
+                            if(x < (width - 12)):
+                                checkEmpty = True
+                                for i in range(0, 5):
+                                    if( g[y][x+i] != "-"):
+                                        checkEmpty = False
+                                        break
+                                if(checkEmpty):
+                                    g[y][x] = "X"
+
+                                    g[y][x+1] = "X"
+                                    g[y-1][x+1] = "X"
+
+                                    g[y][x+2] = "X"
+                                    g[y-1][x+2] = "X"
+                                    g[y-2][x+2] = "X"
+                                    
+                                    g[y][x+3] = "X"
+                                    g[y-1][x+3] = "X"
+                                    g[y-2][x+3] = "X"
+                                    g[y-3][x+3] = "X"
+
+                        if(choose == 1):
                             checkEmpty = True
                             for i in range(0, 5):
-                                if( g[y][x+i] != "-"):
-                                    checkEmpty = False
-                                    break
+                                    if( g[y][x-i] != "-"):
+                                        checkEmpty = False
+                                        break
+                                    
                             if(checkEmpty):
-                                g[y][x] = "X"
+                                    g[y][x] = "X"
 
-                                g[y][x+1] = "X"
-                                g[y-1][x+1] = "X"
+                                    g[y][x-1] = "X"
+                                    g[y-1][x-1] = "X"
 
-                                g[y][x+2] = "X"
-                                g[y-1][x+2] = "X"
-                                g[y-2][x+2] = "X"
-                                
-                                g[y][x+3] = "X"
-                                g[y-1][x+3] = "X"
-                                g[y-2][x+3] = "X"
-                                g[y-3][x+3] = "X"
+                                    g[y][x-2] = "X"
+                                    g[y-1][x-2] = "X"
+                                    g[y-2][x-2] = "X"
+                                    
+                                    g[y][x-3] = "X"
+                                    g[y-1][x-3] = "X"
+                                    g[y-2][x-3] = "X"
+                                    g[y-3][x-3] = "X"
+                        
             
         g[15][:] = ["X"] * width
         g[14][0] = "m"
@@ -462,6 +563,7 @@ def generate_successors(population):
     results = []
     # STUDENT Design and implement this
     # Hint: Call generate_children() on some individuals and fill up results.
+
     tournament_selected = tournament_selection(population)
     for selected in tournament_selected:
         if(selected == tournament_selected[0]):
@@ -473,6 +575,9 @@ def generate_successors(population):
     #     if(selected == random_selected[0]):
     #         continue
     #     results.append(selected.generate_children(random_selected[0]))
+
+    
+    
     # Are these our two parents for us to "generate_children"? 
     return results
 
@@ -540,7 +645,7 @@ def ga():
                 # STUDENT Determine stopping condition
                 stop_condition = False
 
-                if generation > 10:
+                if generation > 2:
                     stop_condition = True
 
                 if stop_condition:

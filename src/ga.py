@@ -118,6 +118,7 @@ class Individual_Grid(object):
         for i in range(0 , (width - 1)):
             if(other.genome[13][i] != '-'):
                 isEmpty = False
+                print("NOT EMPTY")
                 break
 
         if(isEmpty):
@@ -479,7 +480,6 @@ class Individual_DE(object):
             heapq.heappush(new_genome, new_de)
         return new_genome
 
-    # TODO: 
     def generate_children(self, other):
         # STUDENT How does this work?  Explain it in your writeup.
         pa = random.randint(0, len(self.genome) - 1)
@@ -618,7 +618,7 @@ def ga():
     with mpool.Pool(processes=os.cpu_count()) as pool:
         init_time = time.time()
         # STUDENT (Optional) change population initialization
-        population = [Individual.random_individual() if random.random() < 0.9
+        population = [Individual.random_individual() if random.random() < 1
                       else Individual.empty_individual()
                       for _g in range(pop_limit)]
         # But leave this line alone; we have to reassign to population because we get a new population that has more cached stuff in it.

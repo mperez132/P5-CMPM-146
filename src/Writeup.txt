@@ -1,0 +1,64 @@
+Writeup for P5 
+
+Selections:
+We started off with the two selection methods and ended up choosing the tournament selection and the random selection.
+With the tournament selection, we shuffled a copy of the population. We went through the copy until we were able to find the best
+individual and append that to the selected list to generate children with. The random selection is literally what the name implies. 
+Going through the population, we just append a random individual and once we're done we return the selected ones. 
+
+Generate successors:
+In generate successors, we chose the tournament selection method to generate children with over the random selection because the tournament selection took 
+into consideration the fitness of the specified individual. For each of the tournament selected, we generate a child given the 2 parents of a 
+selected and best from the tournament. Then we return our results. 
+
+Random_Individual:
+We did not change any of the fitness functions from the given template. Instead, we changed the random_individual function to apply some more constraints to prevent
+certain blocks from spawning in unwanted positions. We dedicated certain parts of the map to spawning certain items with a random chance. We also made more constraints
+where certain items couldn't conflict with other items. 
+
+Crossover:
+With crossover in the generate_children function, we ran into a problem where the map would have floating pipes lightly placed around the map. 
+To combat this, we continued to do the crossover process and do multiple checks. We made sure when we were crossing over that the genome wouldn't take any pipes so that there
+were no random partial pip tiles floating. If the self genomes fitness was greater than the fitness of the other genome then we would set our new genome to the self genome. 
+This approach we took would fall in line to be called a uniform crossover where we randomly pick one or the other parent's gene at each position and with our bias. 
+
+Mutate: 
+Our mutate function was quite simple with what it was doing. We considered not mutating the individual since some of the levels that were generated were well off but we wanted 
+to add more mutations chances to certain blocks. We first went through the lowest level above the solid ground and if the choice check passed then we would change the empty space to an enemy.
+We experimented with multiple percentages and found that 2 percentage was our perfect spot where there wasn't too many enemies but not too few. Our next check was for a 25 percent chance that 
+a question mark block with a coin can change to a breakable or mushroom block. We had another check that would roll 1 or 2 to see which tile it would change to. We continued to do this for the breakable blocks
+and the mushroom blocks . Finally, we checked between the height of 9 and 14 to give a 0.009 percent chance that an empty space could become a coin. The percentage at first glance seems to be really small
+compared to the other percentages but it's a sweet spot where we think it's just enough coins to keep the levels interactive. 
+
+
+
+Individual_DE: 
+We didn't change anything in the Individual_DE from the template we were given besides a certain check for generate children where we check the length each genome to make sure it wasn't 0.
+There was an error given because when generate children calls random.randint on an empty genome - 1 then it would be out of bounds. 
+
+Fitness:
+For calculating fitness, we thought adding some more penalties for certain objects was a good idea. We added 3 penalities on top of the given one. We said that there shouldn't be more than 12 enemies,
+no more than 15 question blocks, and no more than 20 coins. If there are more then we subtract 2 from penalities. 
+
+Mutate: 
+The mutation algorithm get's a random number between 0 and 1 and as long as the length of the new_genome is greater than 0 and this random number is less than 0.5 meaning it's a 50 percent chance then 
+we can continue with the mutations. We changed the mutation rate to 50 percent to achieve much more interesting levels than the 10 percent that was previously on the template. A random genome is then chosen to be mutated. Depending on the block and another percentage. The tile has it's position offset on the map and sometimes the height of the object is changed. 
+The new_genome is then returned. 
+
+Crossover:
+Within generate_children, we check to see if the length of each genome is greater than 0 and if it is then we take a random index from each. If it is not then we set the index to 0. 
+It takes the index until the beginning of the genome for the first genome and takes the index until the end of the genome for the other genome to create a new one. It then does the same thing but backwards for the new genome. 
+Mutation is then called for the two new genomes. 
+
+Favorite 2 levels: 
+
+Map 1: Map 1 took 5 generations to make with each generation have a time of n + 1. This was a basic map where it's easy at the beginning but once you past the halfway mark. 
+The maps becomes more difficult. There are a lot less enemies, but the main focus is to move around the platforms above to make your way to the goal.
+
+
+Map 2: Map 2 took 4 generations to make with each generation having a time of n + 1. Basically for this map, we loved how it ressembled more of a traditional Mario level. 
+There are a lot of mutations that changed the way the level played. We also noticed that there was a limited amount of mushrooms on the level compared to previous iterations 
+that added more of a challenge. Overall, the nostalgic feeling of a Mario level was present with the map.  
+
+
+We are submitting Map2.txt as our chosen map. We want to enter the competition 

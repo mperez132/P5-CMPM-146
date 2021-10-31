@@ -75,7 +75,7 @@ class Individual_Grid(object):
         for y in range(height):
             for x in range(left, right):
                 if(y == 14):
-                    if random.random() < 0.02:
+                    if random.random() < 0.01:
                         if(genome[y][x] == "-"):
                             genome[y][x] = "E"
                 
@@ -84,16 +84,13 @@ class Individual_Grid(object):
                         roll = random.randrange(1,3)
                         if(roll == 1):
                             genome[y][x] = "B"
-                        else:
-                            genome[y][x] = "M"
 
                 if(genome[y][x] == "B"):
                     if random.random() < 0.25:
                         roll = random.randrange(1,3)
                         if(roll == 1):
                             genome[y][x] = "?"
-                        else:
-                            genome[y][x] = "M"
+    
 
                 if(genome[y][x] == "M"):
                     if random.random() < 0.25:
@@ -113,18 +110,6 @@ class Individual_Grid(object):
     # Create zero or more children from self and other
     # TODO: 
     def generate_children(self, other):
-        
-        isEmpty = True
-        for i in range(0 , (width - 1)):
-            if(other.genome[13][i] != '-'):
-                isEmpty = False
-                print("NOT EMPTY")
-                break
-
-        if(isEmpty):
-            new_genome = copy.deepcopy(self.genome)
-            new_genome = self.mutate(new_genome)
-            return (Individual_Grid(new_genome))
 
         new_genome = copy.deepcopy(other.genome)
         
@@ -242,7 +227,18 @@ class Individual_Grid(object):
                                         BlockCheck = False
                                         c = False
                                         continue
-
+                                    if(y > 2):
+                                        if (g[y-1][x-1] != '-'):
+                                            count = 0
+                                            BlockCheck = False
+                                            c = False
+                                            continue
+                                    if(y < 13):
+                                        if(g[y-3][x] != '-'):
+                                            count = 0
+                                            BlockCheck = False
+                                            c = False
+                                            continue
 
                             # if(g[y+i][x] == 'X'):
                                 
@@ -327,6 +323,19 @@ class Individual_Grid(object):
                                     g[y-1][x-3] = "X"
                                     g[y-2][x-3] = "X"
                                     g[y-3][x-3] = "X"
+                if(y == 15):
+                    if random.random() < 0.20:
+                        choose = random.randrange(0,2)
+                        if(g[y-1][x] == "-"):
+                            if(x <(width - 5)):
+                                if(choose == 0): 
+                                    g[y][x] = "-"
+                                    g[y][x+1] = "-"
+                                if(choose == 1):
+                                    g[y][x] = "-"
+                                    g[y][x+1] = "-"
+                                    g[y][x+2] = "-"
+
                         
             
         g[15][:] = ["X"] * width
@@ -388,7 +397,16 @@ class Individual_DE(object):
         )
         penalties = 0
         # STUDENT For example, too many stairs are unaesthetic.  Let's penalize that
-        if len(list(filter(lambda de: de[1] == "6_stairs", self.genome))) > 5:
+        if len(list(filter(lambda de: de[1] == "6_stairs", self.genome))) > 3:
+            penalties -= 2
+        # No more than x enemies 
+        if len(list(filter(lambda de: de[1] == "2_enemy", self.genome))) > 10:
+            penalties -= 2
+        # No more than x question blocks
+        if len(list(filter(lambda de: de[1] == "5_qblock", self.genome))) > 10:
+            penalties -= 2
+        # No more than x coins
+        if len(list(filter(lambda de: de[1] == "3_coin", self.genome))) > 15:
             penalties -= 2
         # STUDENT If you go for the FI-2POP extra credit, you can put constraint calculation in here too and cache it in a new entry in __slots__.
         self._fitness = sum(map(lambda m: coefficients[m] * measurements[m],
@@ -403,7 +421,7 @@ class Individual_DE(object):
     def mutate(self, new_genome):
         # STUDENT How does this work?  Explain it in your writeup.
         # STUDENT consider putting more constraints on this, to prevent generating weird things
-        if random.random() < 0.1 and len(new_genome) > 0:
+        if random.random() < 0.5 and len(new_genome) > 0:
             to_change = random.randint(0, len(new_genome) - 1)
             de = new_genome[to_change]
             new_de = de
@@ -482,8 +500,16 @@ class Individual_DE(object):
 
     def generate_children(self, other):
         # STUDENT How does this work?  Explain it in your writeup.
-        pa = random.randint(0, len(self.genome) - 1)
-        pb = random.randint(0, len(other.genome) - 1)
+        if(len(self.genome) > 0):
+            pa = random.randint(0, len(self.genome) - 1)
+        else:
+            pa = 0
+
+        if(len(other.genome) > 0):
+            pb = random.randint(0, len(other.genome) - 1)
+        else:
+            pb = 0
+
         a_part = self.genome[:pa] if len(self.genome) > 0 else []
         b_part = other.genome[pb:] if len(other.genome) > 0 else []
         ga = a_part + b_part
@@ -573,7 +599,10 @@ def generate_successors(population):
     for selected in tournament_selected:
         if(selected == tournament_selected[0]):
             continue
-        results.append(selected.generate_children(tournament_selected[0]))
+        children = selected.generate_children(tournament_selected[0])
+        results.append(children)
+        # results.append(children[0])
+        # results.append(children[1])
 
     # random_selected = random_selection(population)
     # for selected in random_selected:
